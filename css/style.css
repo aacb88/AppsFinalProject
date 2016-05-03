@@ -22,10 +22,10 @@ body{
 .line.MLB_Average {
     stroke: blue;
 }
-.line.BOS{
+.line.NL_Average{
     stroke: red;
 }
-.line.DET{
+.line.AL_Average{
     stroke: black;
 }
 
