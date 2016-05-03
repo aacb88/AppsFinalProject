@@ -15,12 +15,50 @@ body{
 
 .line{
     fill: none;
-    stroke: steelblue;
+    stroke: lightgrey;
     stroke-width: 2.5px;
 }
+
+.line.MLB_Average {
+    stroke: blue;
+}
+.line.BOS{
+    stroke: red;
+}
+.line.DET{
+    stroke: black;
+}
+
 .chart {
   height: 500px;
+  position: relative;
+}
+.dot{
+    opacity: 0;
+}    
+
+.line:active{
+    opacity: 1;
+}
+.tt {
+    background-color: #fff;
+    padding: 8px;
+    outline: 1px solid #ccc;
+    display: none;
+    position: absolute;
+}
+.tt .name{
+    font-size: 14px;
+}
+.tt .date{
+    text-transform: uppercase;
+    font-size: 12px;
+}
+.tt .time{
+    font-size: 18px;
+    font-weight: bold;
 }
 .text_box{
-    font: 30px tahoma;
+    font-size: 20px;
+    font-weight: bold;
 }

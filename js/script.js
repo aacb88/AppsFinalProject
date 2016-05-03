@@ -9,7 +9,7 @@ var x = d3.time.scale()
 var y = d3.scale.linear()
     .range([height, 0]);
 
-var color = d3.scale.category20();
+var color = d3.scale.category10();
 
 var xAxis = d3.svg.axis()
     .scale(x)
@@ -24,6 +24,21 @@ var line = d3.svg.line()
     .x(function(d) {return x(d.Year); })
     .y(function(d) {return y(d.Time); })
     
+d3.selection.prototype.moveToFront=function(){
+    return this.each(function(){
+        this.parentNode.appendChild(this)
+    });
+};
+d3.selection.prototype.moveToBack= function(){
+    return this.each(function(){
+        var firstChild = this.parentNode.firstChild;
+        if (firstChild){
+            this.parentNode.insertBefore(this, firstChild);
+        }
+    });
+};
+
+
 
 var svg = d3.select(".chart").append("svg")
     .attr("width", width + margin.left + margin.right)
@@ -86,18 +101,70 @@ svg.append("g")
 var team = svg.selectAll(".team")
     .data(teams)
     .enter().append("g")
-    .attr("class", "team");    
+    .attr("class", "team")
+    .attr("team", function(d){
+        return d.name;
+        })
+    .on("mouseover", function(d){
+        d3.select(this).moveToFront();
+        d3.select(this).classed("active", true);
+    })
+    .on("mouseout", function(d){
+        d3.select(this).moveToBack();
+        d3.select(this).classed("active", false);
+    })    
 team.append("path")
-    .attr("class", "line")
+    .attr("class", function(d) {
+        return "line "+d.name;
+    })
     .attr("d", function(d) { return line(d.values); })
-    .style("stroke", function(d) {return color(d.name); });
+    
+
 team.append("text")
     .datum(function(d) {return {name: d.name, value: d.values[d.values.length - 1]}; })
-    .attr("transform", function(d) { return "translate(" + x(d.value.date) + "," + y(d.value.Time) + ")";})
-    .attr("x", 3)
+    .attr("transform", function(d) { return "translate(" + x(d.value.Year) + "," + y(d.value.Time) + ")";})
+    .attr("x", 500)
     .attr("dy", ".35em")
     .text(function(d) {return d.name; });
+team.selectAll(".dot")
+    .data(function(d){
+        return d.values != null;
+    })
+    .enter().append("circle")
+    .attr("class", "dot")
+    .attr("cx", function(d){
+        return x(d.date);
+    })
+    .attr("cy", function(d){
+        return y(d.Time) != null;})
+    .attr("r", 5)
+    .on("mouseover", function(d){
+        var displayDate = (d.date);
+        var displayTime = (d.Time);
 
+        $(".tt").html(
+            "<div class='name'>"+d.name+"</div>"+
+            "<div class='date'>"+displayDate+": </div>"+
+            "<div clss='time'>"+displayTime+": </div>"
+            )
+        $(".tt").show();
+
+        d3.select(this).style("opacity", 1);
+    })
+    .on("mousemove", function(d){
+        var xPos = d3.mouse(this)[0] + margin.left + 10;
+        var yPos = d3.mouse(this)[1] + margin.top +10;
+
+        $(".tt").css({
+            "left": xPos + "px",
+            "top": yPos + "px"
+        })
+    })
+    .on("mouseout", function(d){
+        d3.select(this).style("opacity", 0);
+        $(".tt").hide();
+    });
 });
 
+   
 //first class line, second class team name, 
