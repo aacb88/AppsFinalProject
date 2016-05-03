@@ -1,3 +1,17 @@
+d3.selection.prototype.moveToFront=function(){
+    return this.each(function(){
+        this.parentNode.appendChild(this)
+    });
+};
+d3.selection.prototype.moveToBack= function(){
+    return this.each(function(){
+        var firstChild = this.parentNode.firstChild;
+        if (firstChild){
+            this.parentNode.insertBefore(this, firstChild);
+        }
+    });
+};
+
 var margin = {top: 20, right:80, bottom: 30, left: 50};
     width = $(".chart").width() - margin.left - margin.right;
     height = $(".chart").height() - margin.top - margin.bottom;
@@ -24,19 +38,7 @@ var line = d3.svg.line()
     .x(function(d) {return x(d.Year); })
     .y(function(d) {return y(d.Time); })
     
-d3.selection.prototype.moveToFront=function(){
-    return this.each(function(){
-        this.parentNode.appendChild(this)
-    });
-};
-d3.selection.prototype.moveToBack= function(){
-    return this.each(function(){
-        var firstChild = this.parentNode.firstChild;
-        if (firstChild){
-            this.parentNode.insertBefore(this, firstChild);
-        }
-    });
-};
+
 
 
 
