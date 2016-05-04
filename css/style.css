@@ -43,6 +43,14 @@ body{
     stroke: red;
 }
 
+.team text {
+    opacity: 0;
+}
+
+.team.active text {
+     opacity: 1;   
+}
+
 /* ----- */
 
 .team.active .line {

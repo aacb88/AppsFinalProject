@@ -141,16 +141,8 @@ d3.csv("data/mlb_time.csv", function(error, data) {
             d3.select(this).moveToBack();
             d3.select(this).classed("active", false);
         })
+ 
 
-
-    .on("mouseover", function(d){
-        d3.select(this).moveToFront();
-        d3.select(this).classed("active", true);
-    })
-    .on("mouseout", function(d){
-        d3.select(this).moveToBack();
-        d3.select(this).classed("active", false);
-    })    
 team.append("path")
     .attr("class", function(d) {
         return "line "+d.name;
@@ -164,94 +156,94 @@ team.append("text")
     //.attr("x", 500)
     .attr("dy", ".35em")
     .text(function(d) {return d.name; });
-team.selectAll(".dot")
-    .data(function(d){
-        return d.values != null;
-    })
-    .enter().append("circle")
-    .attr("class", "dot")
-    .attr("cx", function(d){
-        return x(d.Year);
-    })
-    .attr("cy", function(d){
-        return y(d.value.Time) != null;})
-    .attr("r", 5)
-    .on("mouseover", function(d){
-        var displayDate = (d.Year);
-        var displayTime = (d.value.Time);
 
-        $(".tt").html(
-            "<div class='team_name'>"+d.name+"</div>"+
-            "<div class='year_play'>"+displayDate+": </div>"+
-            "<div clss='time_average'>"+displayTime+": </div>"
-            )
-        $(".tt").show();
+
+// team.selectAll(".dot")
+//     .data(function(d){
+//         return d.values != null;
+//     })
+//     .enter().append("circle")
+//     .attr("class", "dot")
+//     .attr("cx", function(d){
+//         return x(d.Year);
+//     })
+//     .attr("cy", function(d){
+//         return y(d.value.Time) != null;})
+//     .attr("r", 5)
+//     .on("mouseover", function(d){
+//         var displayDate = (d.Year);
+//         var displayTime = (d.value.Time);
+
+//         $(".tt").html(
+//             "<div class='team_name'>"+d.name+"</div>"+
+//             "<div class='year_play'>"+displayDate+": </div>"+
+//             "<div clss='time_average'>"+displayTime+": </div>"
+//             )
+//         $(".tt").show();
 
         
-    team.append("path")
-        .attr("class", function(d) {
-            return "line " + d.name;
-        })
-        .attr("d", function(d) {
-            return line(d.values);
-        })
+    // team.append("path")
+    //     .attr("class", function(d) {
+    //         return "line " + d.name;
+    //     })
+    //     .attr("d", function(d) {
+    //         return line(d.values);
+    //     })
 
 
-    team.append("text")
-        .datum(function(d) {
-            return {
-                name: d.name,
-                value: d.values[d.values.length - 1]
-            };
-        })
-        .attr("transform", function(d) {
-            return "translate(" + x(d.value.Year) + "," + y(d.value.Time) + ")";
-        })
-        //.attr("x", 500)
-        .attr("dy", ".35em")
-        .text(function(d) {
-            return d.name;
-        });
-    team.selectAll(".dot")
-        .data(function(d) {
-            return d.values != null;
-        })
-        .enter().append("circle")
-        .attr("class", "dot")
-        .attr("cx", function(d) {
-            return x(d.Year);
-        })
-        .attr("cy", function(d) {
-            return y(d.value.Time) != null;
-        })
-        .attr("r", 5)
-        .on("mouseover", function(d) {
-            var displayDate = (d.Year);
-            var displayTime = (d.value.Time);
+    // team.append("text")
+    //     .datum(function(d) {
+    //         return {
+    //             name: d.name,
+    //             value: d.values[d.values.length - 1]
+    //         };
+    //     })
+    //     .attr("transform", function(d) {
+    //         return "translate(" + x(d.value.Year) + "," + y(d.value.Time) + ")";
+    //     })
+    //     //.attr("x", 500)
+    //     .attr("dy", ".35em")
+    //     .text(function(d) {
+    //         return d.name;
+    //     });
 
-            $(".tt").html(
-                "<div class='team_name'>" + d.name + "</div>" +
-                "<div class='year_play'>" + displayDate + ": </div>" +
-                "<div clss='time_average'>" + displayTime + ": </div>"
-            )
-            $(".tt").show();
+    // team.selectAll(".dot")
+    //     .data(function(d) {
+    //         return d.values != null;
+    //     })
+    //     .enter().append("circle")
+    //     .attr("class", "dot")
+    //     .attr("cx", function(d) {
+    //         return x(d.Year);
+    //     })
+    //     .attr("cy", function(d) {
+    //         return y(d.value.Time) != null;
+    //     })
+    //     .attr("r", 5)
+    //     .on("mouseover", function(d) {
+    //         var displayDate = (d.Year);
+    //         var displayTime = (d.value.Time);
 
-            d3.select(this).style("opacity", 1);
-        })
-        .on("mousemove", function(d) {
-            var xPos = d3.mouse(this)[0] + margin.left + 10;
-            var yPos = d3.mouse(this)[1] + margin.top + 10;
+    //         $(".tt").html(
+    //             "<div class='team_name'>" + d.name + "</div>" +
+    //             "<div class='year_play'>" + displayDate + ": </div>" +
+    //             "<div clss='time_average'>" + displayTime + ": </div>"
+    //         )
+    //         $(".tt").show();
 
-            $(".tt").css({
-                "left": xPos + "px",
-                "top": yPos + "px"
-            })
-        })
-        .on("mouseout", function(d) {
-            d3.select(this).style("opacity", 0);
-            $(".tt").hide();
-        });
+    //         d3.select(this).style("opacity", 1);
+    //     })
+    //     .on("mousemove", function(d) {
+    //         var xPos = d3.mouse(this)[0] + margin.left + 10;
+    //         var yPos = d3.mouse(this)[1] + margin.top + 10;
+
+    //         $(".tt").css({
+    //             "left": xPos + "px",
+    //             "top": yPos + "px"
+    //         })
+    //     })
+    //     .on("mouseout", function(d) {
+    //         d3.select(this).style("opacity", 0);
+    //         $(".tt").hide();
+    //     });
 });
-
-
-//first class line, second class team name,
