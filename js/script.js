@@ -125,7 +125,7 @@ team.append("path")
 team.append("text")
     .datum(function(d) {return {name: d.name, value: d.values[d.values.length - 1]}; })
     .attr("transform", function(d) { return "translate(" + x(d.value.Year) + "," + y(d.value.Time) + ")";})
-    .attr("x", 500)
+    //.attr("x", 500)
     .attr("dy", ".35em")
     .text(function(d) {return d.name; });
 team.selectAll(".dot")

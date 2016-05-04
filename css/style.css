@@ -37,8 +37,8 @@ body{
     opacity: 0;
 }    
 
-.line:active{
-    opacity: 1;
+.team.active .line{
+    stroke: red;
 }
 .tt {
     background-color: #fff;
