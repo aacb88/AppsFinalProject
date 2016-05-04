@@ -135,19 +135,19 @@ team.selectAll(".dot")
     .enter().append("circle")
     .attr("class", "dot")
     .attr("cx", function(d){
-        return x(d.date);
+        return x(d.Year);
     })
     .attr("cy", function(d){
-        return y(d.Time) != null;})
+        return y(d.value.Time) != null;})
     .attr("r", 5)
     .on("mouseover", function(d){
-        var displayDate = (d.date);
-        var displayTime = (d.Time);
+        var displayDate = (d.Year);
+        var displayTime = (d.value.Time);
 
         $(".tt").html(
-            "<div class='name'>"+d.name+"</div>"+
-            "<div class='date'>"+displayDate+": </div>"+
-            "<div clss='time'>"+displayTime+": </div>"
+            "<div class='team_name'>"+d.name+"</div>"+
+            "<div class='year_play'>"+displayDate+": </div>"+
+            "<div clss='time_average'>"+displayTime+": </div>"
             )
         $(".tt").show();
 

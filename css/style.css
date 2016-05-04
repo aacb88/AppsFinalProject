@@ -22,10 +22,10 @@ body{
 .line.MLB_Average {
     stroke: blue;
 }
-.line.NL_Average{
+.line.AL_Average{
     stroke: red;
 }
-.line.AL_Average{
+.line.NL_Average{
     stroke: black;
 }
 
@@ -47,14 +47,14 @@ body{
     display: none;
     position: absolute;
 }
-.tt .name{
+.tt.team_name{
     font-size: 14px;
 }
-.tt .date{
+.tt.year_play{
     text-transform: uppercase;
     font-size: 12px;
 }
-.tt .time{
+.tt.time_average{
     font-size: 18px;
     font-weight: bold;
 }
