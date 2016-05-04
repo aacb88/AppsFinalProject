@@ -247,3 +247,6 @@ team.append("text")
     //         $(".tt").hide();
     //     });
 });
+
+
+//first class line, second class team name,
