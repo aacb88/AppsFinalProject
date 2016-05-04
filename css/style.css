@@ -19,6 +19,8 @@ body{
     stroke-width: 2.5px;
 }
 
+
+
 .line.MLB_Average {
     stroke: blue;
 }
@@ -40,6 +42,16 @@ body{
 .team.active .line{
     stroke: red;
 }
+
+/* ----- */
+
+.team.active .line {
+    stroke: red;
+}
+
+
+/* ----- */
+
 .tt {
     background-color: #fff;
     padding: 8px;
