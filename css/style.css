@@ -2,6 +2,10 @@ body{
     font: 10px sans-serif;
 }
 
+.axis {
+    fill:#000
+}
+
 .axis path,
 .axis line{
     fill:none;
@@ -13,24 +17,32 @@ body{
     display: none;
 }
 
+
 .line{
     fill: none;
     stroke: lightgrey;
     stroke-width: 2.5px;
 }
 
+.byline{
+    font-size: 20px;
+}
+.meta{
+    font-size: 15px;
+}
 
-
-.line.MLB_Average {
+.line.MLB_Avg {
     stroke: blue;
 }
-.line.AL_Average{
-    stroke: red;
+.line.AL_Avg{
+    stroke: green;
 }
-.line.NL_Average{
+.line.NL_Avg{
     stroke: black;
 }
-
+#source-line{
+    font-size: 15px;
+}
 .chart {
   height: 500px;
   position: relative;
@@ -48,17 +60,17 @@ body{
 }
 
 .team.active text {
-     opacity: 1;   
+     opacity: 1;
+     font-size: 15px;   
 }
 
-/* ----- */
+
 
 .team.active .line {
     stroke: red;
 }
 
 
-/* ----- */
 
 .tt {
     background-color: #fff;

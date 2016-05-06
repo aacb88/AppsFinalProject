@@ -111,12 +111,12 @@ d3.csv("data/mlb_time.csv", function(error, data) {
 
 
     svg.append("g")
-        .attr("class", "x-axis")
+        .attr("class", "x axis")
         .attr("transform", "translate(0," + height + ")")
         .call(xAxis);
 
     svg.append("g")
-        .attr("class", "y-axis")
+        .attr("class", "y axis")
         .call(yAxis)
         .append("text")
         .attr("transform", "rotate(-90)")
@@ -140,6 +140,7 @@ d3.csv("data/mlb_time.csv", function(error, data) {
         .on("mouseout", function(d) {
             d3.select(this).moveToBack();
             d3.select(this).classed("active", false);
+    
         })
  
 
@@ -154,7 +155,7 @@ team.append("text")
     .datum(function(d) {return {name: d.name, value: d.values[d.values.length - 1]}; })
     .attr("transform", function(d) { return "translate(" + x(d.value.Year) + "," + y(d.value.Time) + ")";})
     //.attr("x", 500)
-    .attr("dy", ".35em")
+    .attr("dy", ".85em")
     .text(function(d) {return d.name; });
 
 
